@@ -5,11 +5,32 @@ import { FeatureSection } from "@/components/feature-section";
 import { Integrations } from "@/components/integrations";
 
 
-const TestimonialsSection = dynamic(() => import("@/components/testimonials-section").then((mod) => mod.TestimonialsSection));
-const PricingSection = dynamic(() => import("@/components/pricing-section").then((mod) => mod.PricingSection));
-const CtaSection = dynamic(() => import("@/components/cta-section").then((mod) => mod.CtaSection));
-const FaqsSection = dynamic(() => import("@/components/faqs-section").then((mod) => mod.FaqsSection));
-const Footer = dynamic(() => import("@/components/flickering-footer").then((mod) => mod.Component));
+const SectionSkeleton = () => (
+  <div className="w-full max-w-6xl mx-auto px-4 py-16">
+    <div className="h-[250px] w-full animate-pulse bg-zinc-900/40 border border-white/5 rounded-2xl" />
+  </div>
+);
+
+const TestimonialsSection = dynamic(
+  () => import("@/components/testimonials-section").then((mod) => mod.TestimonialsSection),
+  { loading: () => <SectionSkeleton /> }
+);
+const PricingSection = dynamic(
+  () => import("@/components/pricing-section").then((mod) => mod.PricingSection),
+  { loading: () => <SectionSkeleton /> }
+);
+const CtaSection = dynamic(
+  () => import("@/components/cta-section").then((mod) => mod.CtaSection),
+  { loading: () => <SectionSkeleton /> }
+);
+const FaqsSection = dynamic(
+  () => import("@/components/faqs-section").then((mod) => mod.FaqsSection),
+  { loading: () => <SectionSkeleton /> }
+);
+const Footer = dynamic(
+  () => import("@/components/flickering-footer").then((mod) => mod.Component),
+  { loading: () => <SectionSkeleton /> }
+);
 
 export default function Home() {
   return (

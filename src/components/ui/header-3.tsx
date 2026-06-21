@@ -62,8 +62,8 @@ export function Header() {
 
 	return (
 		<motion.header
-			initial={{ opacity: 0, y: -20, filter: 'blur(6px)' }}
-			animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+			initial={{ opacity: 0, y: -20 }}
+			animate={{ opacity: 1, y: 0 }}
 			transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
 			className={cn('sticky top-0 z-50 mx-auto w-full border border-transparent transition-all duration-300 ease-out', {
 				'md:top-2 md:max-w-4xl md:rounded-xl bg-background/95 backdrop-blur-sm supports-[backdrop-filter]:bg-background/50 border-border shadow-md': scrolled,

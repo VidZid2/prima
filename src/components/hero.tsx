@@ -30,14 +30,14 @@ export function HeroSection() {
 					{/* Main Hero Content */}
 					<div className="relative z-10 w-full flex-1 flex flex-col items-center justify-center pt-32 pb-24">
 						<motion.div 
-							initial={{ opacity: 0, y: 20, filter: "blur(12px)" }}
-							animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+							initial={{ opacity: 0, y: 20 }}
+							animate={{ opacity: 1, y: 0 }}
 							transition={{ 
 								duration: 0.9, 
 								delay: 0.15,
 								ease: [0.16, 1, 0.3, 1] 
 							}}
-							className="w-full max-w-6xl mx-auto px-4 flex flex-col items-center justify-center z-10 relative max-md:!blur-none"
+							className="w-full max-w-6xl mx-auto px-4 flex flex-col items-center justify-center z-10 relative"
 						>
 							{/* Top Pill Badge */}
 							<UpgradeBanner 
@@ -115,10 +115,8 @@ export function HeroSection() {
 							initial={{ opacity: 0, y: 15 }}
 							animate={{ opacity: 1, y: 0 }}
 							transition={{ 
-								type: "spring",
-								stiffness: 70,
-								damping: 15,
-								mass: 1,
+								duration: 0.85,
+								ease: [0.16, 1, 0.3, 1],
 								delay: 0.25
 							}}
 							className="w-full max-w-6xl mx-auto px-0 lg:px-4"

@@ -1,7 +1,7 @@
 "use client";
 
 import { Input as InputPrimitive } from "@base-ui/react/input";
-import { Check, ChevronRight } from "lucide-react";
+import { Check, ChevronRight, Sparkles } from "lucide-react";
 import { AnimatePresence, LayoutGroup, motion } from "motion/react";
 import {
   Fragment,
@@ -1744,6 +1744,7 @@ export type PromptInputProps = {
   settings?: Record<string, string>;
   defaultSettings?: Record<string, string>;
   onSettingsChange?: (settings: Record<string, string>) => void;
+  isLoading?: boolean;
 };
 
 export function PromptInput({
@@ -1755,6 +1756,7 @@ export function PromptInput({
   settings: settingsProp,
   defaultSettings,
   onSettingsChange,
+  isLoading,
 }: PromptInputProps) {
   const [expanded, setExpanded] = useState(false);
   const [value, setValue] = useState("");
@@ -1861,12 +1863,13 @@ export function PromptInput({
     [expanded, syncExpandedHeight]
   );
 
-  const expand = () => {
+  const expand = useCallback(() => {
+    if (isLoading) return;
     setExpanded(true);
     requestAnimationFrame(() => {
       inputRef.current?.focus();
     });
-  };
+  }, [isLoading]);
 
   const maybeCollapse = useCallback(() => {
     requestAnimationFrame(() => {
@@ -1977,16 +1980,28 @@ export function PromptInput({
             key="placeholder"
             style={{ height: COLLAPSED_HEIGHT }}
           >
-            <InputPrimitive
-              aria-label="Open prompt input"
-              className={`${promptFieldCollapsedClassName} block h-5 min-w-0 flex-1 cursor-text border-0 bg-transparent p-0 font-medium text-muted-foreground leading-5 sm:h-auto sm:leading-[17px]`}
-              onMouseDown={(event) => {
-                event.preventDefault();
-                expand();
-              }}
-              placeholder={placeholder}
-              readOnly
-            />
+            {isLoading ? (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="flex w-full items-center gap-2 pointer-events-none text-zinc-400"
+              >
+                <Sparkles className="size-4 animate-pulse" />
+                <span className="text-sm font-medium animate-pulse">Assistant is typing...</span>
+              </motion.div>
+            ) : (
+              <InputPrimitive
+                aria-label="Open prompt input"
+                className={`${promptFieldCollapsedClassName} block h-5 min-w-0 flex-1 cursor-text border-0 bg-transparent p-0 font-medium text-muted-foreground leading-5 sm:h-auto sm:leading-[17px]`}
+                onMouseDown={(event) => {
+                  event.preventDefault();
+                  expand();
+                }}
+                placeholder={placeholder}
+                readOnly
+              />
+            )}
           </motion.div>
         )}
       </AnimatePresence>

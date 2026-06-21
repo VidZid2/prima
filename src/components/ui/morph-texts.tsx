@@ -11,17 +11,14 @@ const MORPH_TRANSITION_DURATION = 0.9;
 const wordVariants = {
   initial: {
     opacity: 0,
-    filter: "blur(20px)",
     scale: 0.8,
   },
   animate: {
     opacity: 1,
-    filter: "blur(0px)",
     scale: 1,
   },
   exit: {
     opacity: 0,
-    filter: "blur(20px)",
     scale: 1.2,
   },
 };

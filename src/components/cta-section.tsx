@@ -9,11 +9,11 @@ import { motion, LayoutGroup } from "framer-motion";
 import { TextRotate } from "@/components/ui/text-rotate";
 import Link from "next/link";
 const ctaHeadingVariants = {
-	hidden: { opacity: 0, y: 20, filter: "blur(10px)" },
+	hidden: { opacity: 0, y: 30, scale: 0.95 },
 	show: {
 		opacity: 1,
 		y: 0,
-		filter: "blur(0px)",
+		scale: 1,
 		transition: {
 			duration: 1.2,
 			ease: [0.16, 1, 0.3, 1] as const,
@@ -22,11 +22,10 @@ const ctaHeadingVariants = {
 };
 
 const ctaSubtextVariants = {
-	hidden: { opacity: 0, y: 15, filter: "blur(8px)" },
+	hidden: { opacity: 0, y: 25 },
 	show: {
 		opacity: 1,
 		y: 0,
-		filter: "blur(0px)",
 		transition: {
 			duration: 1.2,
 			ease: [0.16, 1, 0.3, 1] as const,
@@ -36,11 +35,10 @@ const ctaSubtextVariants = {
 };
 
 const ctaButtonVariants = {
-	hidden: { opacity: 0, y: 12, filter: "blur(6px)", scale: 0.96 },
+	hidden: { opacity: 0, y: 20, scale: 0.90 },
 	show: {
 		opacity: 1,
 		y: 0,
-		filter: "blur(0px)",
 		scale: 1,
 		transition: {
 			duration: 1.0,
@@ -51,11 +49,10 @@ const ctaButtonVariants = {
 };
 
 const ctaCardsVariants = {
-	hidden: { opacity: 0, y: 30, filter: "blur(12px)", scale: 0.95 },
+	hidden: { opacity: 0, y: 50, scale: 0.90 },
 	show: {
 		opacity: 1,
 		y: 0,
-		filter: "blur(0px)",
 		scale: 1,
 		transition: {
 			duration: 1.4,
@@ -120,7 +117,7 @@ export function CtaSection() {
 							initial="hidden"
 							whileInView="show"
 							viewport={{ once: true, margin: "-80px" }}
-							className="text-balance font-sans font-bold text-3xl sm:text-4xl md:text-4xl lg:text-5xl tracking-tight drop-shadow-[0_4px_16px_rgba(0,0,0,0.6)] mb-5 md:mb-4 flex flex-col md:flex-row items-center justify-center gap-2.5 md:gap-0 md:flex-nowrap leading-[1.1] whitespace-nowrap max-md:!blur-none"
+							className="text-balance font-sans font-bold text-3xl sm:text-4xl md:text-4xl lg:text-5xl tracking-tight drop-shadow-[0_4px_16px_rgba(0,0,0,0.6)] mb-5 md:mb-4 flex flex-col md:flex-row items-center justify-center gap-2.5 md:gap-0 md:flex-nowrap leading-[1.1] whitespace-nowrap"
 							layout
 						>
 							<motion.span 
@@ -149,7 +146,7 @@ export function CtaSection() {
 							initial="hidden"
 							whileInView="show"
 							viewport={{ once: true, margin: "-80px" }}
-							className="text-muted-foreground max-w-xl mx-auto mb-8 text-xs md:text-base px-4 max-md:!blur-none"
+							className="text-muted-foreground max-w-xl mx-auto mb-8 text-xs md:text-base px-4"
 						>
 							Book a free 30-minute discovery call. We'll explore your goals, outline a strategy, and see how PRIMA can bring your vision to life.
 						</motion.p>
@@ -158,7 +155,7 @@ export function CtaSection() {
 							initial="hidden"
 							whileInView="show"
 							viewport={{ once: true, margin: "-80px" }}
-							className="max-md:!blur-none"
+							className=""
 						>
 							<Link href="#pricing" className="flex items-center justify-center h-11 px-8 rounded-full text-sm font-semibold transition-all duration-300 relative overflow-hidden select-none outline-none focus-visible:ring-3 focus-visible:ring-ring/50 bg-gradient-to-b from-[#2a2a2f] to-[#121214] border border-white/10 hover:border-white/20 hover:from-[#323238] hover:to-[#171719] shadow-[inset_0_1px_1px_rgba(255,255,255,0.15),_0_4px_16px_rgba(0,0,0,0.4)] active:shadow-[inset_0_2px_8px_rgba(0,0,0,0.8)] active:translate-y-[1px] text-zinc-100 group cursor-pointer">
 								<span className="relative z-10 flex items-center">
@@ -173,7 +170,7 @@ export function CtaSection() {
 							initial="hidden"
 							whileInView="show"
 							viewport={{ once: true, margin: "-60px" }}
-							className="mt-16 md:mt-24 relative w-full h-[240px] md:h-[260px] max-md:!blur-none"
+							className="mt-16 md:mt-24 relative w-full h-[240px] md:h-[260px]"
 						>
 
 							{/* Left Card */}

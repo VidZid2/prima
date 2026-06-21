@@ -42,11 +42,10 @@ export function PricingSection() {
 }
 
 const headerVariants = {
-	hidden: { opacity: 0, y: 15, filter: "blur(8px)" },
+	hidden: { opacity: 0, y: -20 },
 	show: {
 		opacity: 1,
 		y: 0,
-		filter: "blur(0px)",
 		transition: { 
 			duration: 1.2, 
 			ease: [0.16, 1, 0.3, 1] as const 
@@ -55,11 +54,11 @@ const headerVariants = {
 };
 
 const containerVariants = {
-	hidden: { opacity: 0, y: 20, filter: "blur(10px)" },
+	hidden: { opacity: 0, scale: 0.97, y: 30 },
 	show: {
 		opacity: 1,
+		scale: 1,
 		y: 0,
-		filter: "blur(0px)",
 		transition: { 
 			duration: 1.4, 
 			ease: [0.16, 1, 0.3, 1] as const,
@@ -69,11 +68,10 @@ const containerVariants = {
 };
 
 const leftColumnVariants = {
-	hidden: { opacity: 0, y: 15, filter: "blur(8px)" },
+	hidden: { opacity: 0, x: -30 },
 	show: {
 		opacity: 1,
-		y: 0,
-		filter: "blur(0px)",
+		x: 0,
 		transition: { 
 			duration: 1.2, 
 			ease: [0.16, 1, 0.3, 1] as const,
@@ -83,11 +81,10 @@ const leftColumnVariants = {
 };
 
 const rightHeaderVariants = {
-	hidden: { opacity: 0, y: 15, filter: "blur(8px)" },
+	hidden: { opacity: 0, y: -20 },
 	show: {
 		opacity: 1,
 		y: 0,
-		filter: "blur(0px)",
 		transition: { 
 			duration: 1.2, 
 			ease: [0.16, 1, 0.3, 1] as const,
@@ -97,11 +94,10 @@ const rightHeaderVariants = {
 };
 
 const gridVariants = {
-	hidden: { opacity: 0, y: 15, filter: "blur(8px)" },
+	hidden: { opacity: 0, x: 30 },
 	show: {
 		opacity: 1,
-		y: 0,
-		filter: "blur(0px)",
+		x: 0,
 		transition: { 
 			duration: 1.4, 
 			ease: [0.16, 1, 0.3, 1] as const,
@@ -111,11 +107,10 @@ const gridVariants = {
 };
 
 const featureItemVariants = {
-	hidden: { opacity: 0, y: 10, filter: "blur(4px)" },
+	hidden: { opacity: 0, scale: 0.95 },
 	show: (i: number) => ({
 		opacity: 1,
-		y: 0,
-		filter: "blur(0px)",
+		scale: 1,
 		transition: { 
 			duration: 0.8, 
 			ease: [0.16, 1, 0.3, 1] as const,
@@ -125,11 +120,10 @@ const featureItemVariants = {
 };
 
 const bottomRowVariants = {
-	hidden: { opacity: 0, y: 15, filter: "blur(8px)" },
+	hidden: { opacity: 0, y: 20 },
 	show: {
 		opacity: 1,
 		y: 0,
-		filter: "blur(0px)",
 		transition: { 
 			duration: 1.2, 
 			ease: [0.16, 1, 0.3, 1] as const,
@@ -259,7 +253,7 @@ function PricingSectionInner() {
 					initial="hidden"
 					whileInView="show"
 					viewport={{ once: true, margin: "-100px" }}
-					className="relative z-20 flex flex-col md:flex-row md:items-center justify-between px-4 md:px-8 gap-6 mb-8 max-md:!blur-none"
+					className="relative z-20 flex flex-col md:flex-row md:items-center justify-between px-4 md:px-8 gap-6 mb-8"
 				>
 					<h2 className="text-balance font-medium text-2xl md:text-3xl lg:text-4xl">
 						Flexible pricing
@@ -283,11 +277,11 @@ function PricingSectionInner() {
 						<AnimatePresence>
 							{isDropdownOpen && (
 								<motion.div 
-									initial={{ opacity: 0, y: -8, filter: "blur(4px)" }}
-									animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-									exit={{ opacity: 0, y: -8, filter: "blur(4px)" }}
+									initial={{ opacity: 0, y: -8, scale: 0.95 }}
+									animate={{ opacity: 1, y: 0, scale: 1 }}
+									exit={{ opacity: 0, y: -8, scale: 0.95 }}
 									transition={{ duration: 0.18, ease: "easeOut" }}
-									className="absolute top-full left-0 md:left-auto md:right-0 mt-2 w-full sm:w-[180px] bg-[#121214]/95 backdrop-blur-xl border border-white/10 rounded-lg shadow-[inset_0_1px_1px_rgba(255,255,255,0.05),_0_12px_40px_rgba(0,0,0,0.8)] overflow-hidden z-[100] max-md:!blur-none"
+									className="absolute top-full left-0 md:left-auto md:right-0 mt-2 w-full sm:w-[180px] bg-[#121214]/95 backdrop-blur-xl border border-white/10 rounded-lg shadow-[inset_0_1px_1px_rgba(255,255,255,0.05),_0_12px_40px_rgba(0,0,0,0.8)] overflow-hidden z-[100]"
 								>
 									<div className="flex flex-col p-1">
 										{categories.map((category) => {
@@ -342,7 +336,7 @@ function PricingSectionInner() {
 					initial="hidden"
 					whileInView="show"
 					viewport={{ once: true, margin: "-100px" }}
-					className="relative border-y border-white/10 max-md:!blur-none"
+					className="relative border-y border-white/10"
 				>
 					<DecorIcon className="size-4" position="top-left" />
 					<DecorIcon className="size-4" position="top-right" />
@@ -376,10 +370,10 @@ function PricingSectionInner() {
 									)}
 									<motion.div
 										key={`${activeTab}-${viewRetainers}`}
-										initial={{ opacity: 0, filter: "blur(6px)", y: 8 }}
-										animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+										initial={{ opacity: 0, x: -15, y: 8 }}
+										animate={{ opacity: 1, x: 0, y: 0 }}
 										transition={{ duration: 0.28, ease: "easeOut" }}
-										className="flex flex-col justify-between flex-1 relative z-10 w-full max-md:!blur-none"
+										className="flex flex-col justify-between flex-1 relative z-10 w-full"
 									>
 										<div className="space-y-6">
 											{activeCard.badge && (
@@ -435,11 +429,11 @@ function PricingSectionInner() {
 																	<AnimatePresence>
 																		{fastPriority && activeTier === i && (
 																			<motion.span
-																				initial={{ opacity: 0, width: 0, scale: 0.8, filter: "blur(2px)", marginLeft: 0 }}
-																				animate={{ opacity: 1, width: "auto", scale: 1, filter: "blur(0px)", marginLeft: 6 }}
-																				exit={{ opacity: 0, width: 0, scale: 0.8, filter: "blur(2px)", marginLeft: 0 }}
+																				initial={{ opacity: 0, width: 0, scale: 0.8, marginLeft: 0 }}
+																				animate={{ opacity: 1, width: "auto", scale: 1, marginLeft: 6 }}
+																				exit={{ opacity: 0, width: 0, scale: 0.8, marginLeft: 0 }}
 																				transition={{ duration: 0.2, ease: "easeOut" }}
-																				className="text-[9px] font-bold text-cyan-400 inline-block origin-left whitespace-nowrap overflow-hidden max-md:!blur-none"
+																				className="text-[9px] font-bold text-cyan-400 inline-block origin-left whitespace-nowrap overflow-hidden"
 																			>
 																				+ Fast
 																			</motion.span>
@@ -453,11 +447,11 @@ function PricingSectionInner() {
 																	<AnimatePresence mode="wait">
 																		<motion.span
 																			key={getTurnaroundLimit(pkg.limit, i)}
-																			initial={{ opacity: 0, y: -2, filter: "blur(2px)" }}
-																			animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-																			exit={{ opacity: 0, y: 2, filter: "blur(2px)" }}
+																			initial={{ opacity: 0, y: -2 }}
+																			animate={{ opacity: 1, y: 0 }}
+																			exit={{ opacity: 0, y: 2 }}
 																			transition={{ duration: 0.2, ease: "easeOut" }}
-																			className="flex items-center gap-1.5 max-md:!blur-none"
+																			className="flex items-center gap-1.5"
 																		>
 																			{getTurnaroundLimit(pkg.limit, i)}
 																		</motion.span>

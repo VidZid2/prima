@@ -1,18 +1,18 @@
 import { InfiniteSlider } from "@/components/infinite-slider";
+import Image from "next/image";
 
 export function LogoCloud() {
 	return (
 		<div className="relative py-6 [mask-image:linear-gradient(to_right,transparent,black_15%,black_85%,transparent)]">
 			<InfiniteSlider gap={42} reverse speed={60} speedOnHover={20}>
 				{logos.map((logo) => (
-					<img
+					<Image
 						alt={logo.alt}
-						className="pointer-events-none h-4 select-none md:h-5 dark:brightness-0 dark:invert"
-						height="auto"
+						className="pointer-events-none h-4 select-none md:h-5 w-auto object-contain dark:brightness-0 dark:invert"
+						height={20}
+						width={100}
 						key={`logo-${logo.alt}`}
-						loading="lazy"
 						src={logo.src}
-						width="auto"
 					/>
 				))}
 			</InfiniteSlider>

@@ -120,7 +120,6 @@ export function Tooltip({
                   animate={{
                     opacity: 1,
                     scale: 1,
-                    filter: "blur(0px)",
                   }}
                   className={cn(
                     tooltipThemeClassName,
@@ -130,13 +129,11 @@ export function Tooltip({
                   exit={{
                     opacity: 0,
                     scale: 0.92,
-                    filter: "blur(4px)",
                   }}
                   id={tooltipId}
                   initial={{
                     opacity: 0,
                     scale: 0.92,
-                    filter: "blur(4px)",
                   }}
                   role="tooltip"
                   style={{

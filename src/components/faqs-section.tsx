@@ -93,11 +93,11 @@ function ThinkingCollapse({ reasoning, isThinking }: { reasoning: string, isThin
 
 
 const faqHeadingVariants = {
-	hidden: { opacity: 0, y: 18, filter: "blur(10px)" },
+	hidden: { opacity: 0, y: 25, scale: 0.98 },
 	show: {
 		opacity: 1,
 		y: 0,
-		filter: "blur(0px)",
+		scale: 1,
 		transition: {
 			duration: 1.2,
 			ease: [0.16, 1, 0.3, 1] as const,
@@ -106,11 +106,10 @@ const faqHeadingVariants = {
 };
 
 const faqSubtextVariants = {
-	hidden: { opacity: 0, y: 14, filter: "blur(8px)" },
+	hidden: { opacity: 0, y: 20 },
 	show: {
 		opacity: 1,
 		y: 0,
-		filter: "blur(0px)",
 		transition: {
 			duration: 1.2,
 			ease: [0.16, 1, 0.3, 1] as const,
@@ -120,11 +119,10 @@ const faqSubtextVariants = {
 };
 
 const faqSearchVariants = {
-	hidden: { opacity: 0, y: 10, filter: "blur(6px)", scale: 0.97 },
+	hidden: { opacity: 0, y: 15, scale: 0.95 },
 	show: {
 		opacity: 1,
 		y: 0,
-		filter: "blur(0px)",
 		scale: 1,
 		transition: {
 			duration: 1.0,
@@ -135,11 +133,10 @@ const faqSearchVariants = {
 };
 
 const faqTabsVariants = {
-	hidden: { opacity: 0, y: 10, filter: "blur(6px)" },
+	hidden: { opacity: 0, x: -20 },
 	show: {
 		opacity: 1,
-		y: 0,
-		filter: "blur(0px)",
+		x: 0,
 		transition: {
 			duration: 1.0,
 			ease: [0.16, 1, 0.3, 1] as const,
@@ -149,11 +146,11 @@ const faqTabsVariants = {
 };
 
 const faqItemVariants = {
-	hidden: { opacity: 0, y: 12, filter: "blur(6px)" },
+	hidden: { opacity: 0, y: 20, x: -10 },
 	show: (i: number) => ({
 		opacity: 1,
 		y: 0,
-		filter: "blur(0px)",
+		x: 0,
 		transition: {
 			duration: 0.9,
 			ease: [0.16, 1, 0.3, 1] as const,
@@ -163,11 +160,10 @@ const faqItemVariants = {
 };
 
 const faqFooterVariants = {
-	hidden: { opacity: 0, y: 10, filter: "blur(6px)" },
+	hidden: { opacity: 0, y: 20 },
 	show: {
 		opacity: 1,
 		y: 0,
-		filter: "blur(0px)",
 		transition: {
 			duration: 1.0,
 			ease: [0.16, 1, 0.3, 1] as const,
@@ -188,11 +184,58 @@ export function FaqsSection() {
 	const scrollContainerRef = useRef<HTMLDivElement>(null);
 	const toasts = useToasts();
 
+	const prevMessagesLength = useRef(0);
+	const isScrolledUpRef = useRef(false);
+	const isTouchingRef = useRef(false);
+
+	const handleScroll = useCallback(() => {
+		if (scrollContainerRef.current) {
+			const el = scrollContainerRef.current;
+			// Tiny threshold (15px) to immediately catch any manual scroll up
+			isScrolledUpRef.current = el.scrollHeight - el.scrollTop - el.clientHeight > 15;
+		}
+	}, []);
+
+	const handleTouchStart = useCallback(() => {
+		isTouchingRef.current = true;
+	}, []);
+
+	const handleTouchEnd = useCallback(() => {
+		isTouchingRef.current = false;
+		// Re-evaluate scroll position on touch end
+		if (scrollContainerRef.current) {
+			const el = scrollContainerRef.current;
+			isScrolledUpRef.current = el.scrollHeight - el.scrollTop - el.clientHeight > 15;
+		}
+	}, []);
+
 	useEffect(() => {
 		if (scrollContainerRef.current) {
-			scrollContainerRef.current.scrollTo({
-				top: scrollContainerRef.current.scrollHeight,
-				behavior: "smooth"
+			const el = scrollContainerRef.current;
+			const isNewMessage = messages.length > prevMessagesLength.current;
+			prevMessagesLength.current = messages.length;
+
+			const currentIsScrolledUp = el.scrollHeight - el.scrollTop - el.clientHeight > 15;
+			const userHasScrolledUp = isScrolledUpRef.current || currentIsScrolledUp || isTouchingRef.current;
+
+			if (isNewMessage) {
+				isScrolledUpRef.current = false;
+				el.scrollTo({
+					top: el.scrollHeight,
+					behavior: "smooth"
+				});
+				return;
+			}
+
+			// If the user has scrolled up or is actively touching/swiping, DO NOT SCROLL.
+			if (userHasScrolledUp) {
+				return;
+			}
+
+			// Use "auto" for token streams. Smooth scrolling repeatedly will lock up touch events!
+			el.scrollTo({
+				top: el.scrollHeight,
+				behavior: "auto"
 			});
 		}
 	}, [messages]);
@@ -305,7 +348,7 @@ export function FaqsSection() {
 							initial="hidden"
 							whileInView="show"
 							viewport={{ once: true, margin: "-80px" }}
-							className="mb-4 font-semibold text-3xl md:text-4xl text-foreground tracking-tight max-md:!blur-none"
+							className="mb-4 font-semibold text-3xl md:text-4xl text-foreground tracking-tight"
 						>
 							Frequently Asked Questions
 						</motion.h1>
@@ -314,7 +357,7 @@ export function FaqsSection() {
 							initial="hidden"
 							whileInView="show"
 							viewport={{ once: true, margin: "-80px" }}
-							className="mb-8 max-w-2xl text-muted-foreground text-sm md:text-base max-md:!blur-none"
+							className="mb-8 max-w-2xl text-muted-foreground text-sm md:text-base"
 						>
 							Find answers to common questions about our web design services, process, and support. Can't find what you're looking for? Our team is here to help.
 						</motion.p>
@@ -324,7 +367,7 @@ export function FaqsSection() {
 							initial="hidden"
 							whileInView="show"
 							viewport={{ once: true, margin: "-80px" }}
-							className="flex flex-col gap-5 mt-2 max-md:!blur-none"
+							className="flex flex-col gap-5 mt-2"
 						>
 							<InputGroup className="w-full sm:max-w-sm bg-transparent border-border">
 								<InputGroupAddon className="bg-transparent border-none pl-3 pr-2">
@@ -375,7 +418,7 @@ export function FaqsSection() {
 						initial="hidden"
 						whileInView="show"
 						viewport={{ once: true, margin: "-80px" }}
-						className="relative flex items-center justify-between border-y border-border px-4 md:px-6 max-md:!blur-none"
+						className="relative flex items-center justify-between border-y border-border px-4 md:px-6"
 					>
 						<FullWidthDivider className="bg-zinc-800" position="top" />
 						<FullWidthDivider className="bg-zinc-800" position="bottom" />
@@ -511,11 +554,11 @@ export function FaqsSection() {
 								) : (
 									<motion.div 
 								key="chat-container"
-								initial={{ opacity: 0, filter: "blur(4px)" }}
-								animate={{ opacity: 1, filter: "blur(0px)" }}
-								exit={{ opacity: 0, filter: "blur(4px)" }}
+								initial={{ opacity: 0, y: 10, scale: 0.98 }}
+								animate={{ opacity: 1, y: 0, scale: 1 }}
+								exit={{ opacity: 0, y: -10, scale: 0.98 }}
 								transition={{ duration: 0.3, ease: [0.25, 1, 0.5, 1] }}
-								className="flex flex-col w-full max-md:!blur-none"
+								className="flex flex-col w-full"
 							>
 							{/* Conversation container */}
 							<div className="group relative w-full border border-white/5 bg-zinc-900/10 h-[640px] max-h-[80vh] flex flex-col items-center justify-between shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)] transition-all duration-500 overflow-hidden">
@@ -537,7 +580,16 @@ export function FaqsSection() {
 											<p className="text-muted-foreground text-sm font-sans">How can I help you today?</p>
 										</div>
 									) : (
-										<div ref={scrollContainerRef} data-lenis-prevent="true" className="absolute inset-0 overflow-y-auto pt-8 pb-36 px-8 flex flex-col gap-6 scrollbar-none">
+										<div 
+											ref={scrollContainerRef} 
+											onScroll={handleScroll} 
+											onTouchStart={handleTouchStart}
+											onTouchEnd={handleTouchEnd}
+											onTouchCancel={handleTouchEnd}
+											onWheel={(e) => e.stopPropagation()}
+											data-lenis-prevent="true" 
+											className="absolute inset-0 overflow-y-auto overscroll-contain pt-8 pb-36 px-8 flex flex-col gap-6 scrollbar-none"
+										>
 											{messages.map((msg) => (
 												<motion.div 
 													key={msg.id} 
@@ -554,10 +606,10 @@ export function FaqsSection() {
 														)}
 														{!msg.isThinking && (
     <motion.div 
-        initial={{ opacity: 0, y: 10, filter: "blur(4px)" }}
-        animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+        initial={{ opacity: 0, y: 10, x: -5 }}
+        animate={{ opacity: 1, y: 0, x: 0 }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        className="prose prose-invert max-w-none prose-p:leading-relaxed prose-pre:bg-zinc-900 prose-pre:border prose-pre:border-white/10 prose-headings:font-bold prose-a:text-cyan-400 prose-strong:text-white max-md:!blur-none"
+        className="prose prose-invert max-w-none prose-p:leading-relaxed prose-pre:bg-zinc-900 prose-pre:border prose-pre:border-white/10 prose-headings:font-bold prose-a:text-cyan-400 prose-strong:text-white"
     >
         <ReactMarkdown
             components={{
@@ -586,6 +638,7 @@ export function FaqsSection() {
 									<div className="absolute bottom-0 left-0 right-0 flex flex-col items-center gap-3 p-8 pt-12 pb-6 bg-gradient-to-t from-background via-background/95 to-transparent z-20 pointer-events-none">
 										<div className="w-full pointer-events-auto">
 											<PromptInput
+												isLoading={messages.some(msg => msg.isThinking)}
 												defaultSettings={{ model: "mimo-2.5", effort: "high" }}
 												onSettingsChange={(settings) => setAiSettings({
 													model: String(settings.model || "mimo-2.5"),

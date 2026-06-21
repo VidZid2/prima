@@ -56,7 +56,7 @@ export function FeatureSection() {
 							whileInView={{ y: 0, opacity: 1 }}
 							viewport={{ once: true, margin: "-80px" }}
 							transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
-							className="mt-4 text-balance text-muted-foreground text-xs md:text-base px-2"
+							className="mt-4 text-balance text-muted-foreground text-sm sm:text-base md:text-lg px-2 max-w-2xl mx-auto"
 						>
 							Comprehensive digital technology solutions tailored for your growth and innovation.
 						</motion.p>

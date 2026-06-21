@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import Image from "next/image"
 import { cn } from "@/lib/utils"
 
 import { testimonials } from "@/config/landing-data";
@@ -87,9 +88,11 @@ export function Testimonials() {
               >
                 {/* Avatar with smooth ring animation */}
                 <div className="relative flex-shrink-0">
-                  <img
+                  <Image
                     src={testimonial.avatar || "/placeholder.svg"}
                     alt={testimonial.author}
+                    width={32}
+                    height={32}
                     className={cn(
                       "w-8 h-8 rounded-full object-cover",
                       "transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]",

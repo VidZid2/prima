@@ -1,6 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { FullWidthDivider } from "@/components/full-width-divider";
 import { DecorIcon } from "@/components/decor-icon";
@@ -25,11 +26,11 @@ export function Integrations() {
 				<div className="grid grid-cols-1 gap-12 md:grid-cols-2 md:items-center pt-0 pb-12 md:pb-16">
 					{/* Left Content */}
 					<motion.div 
-						initial={{ opacity: 0, x: -30, filter: "blur(10px)" }}
-						whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+						initial={{ opacity: 0, x: -30 }}
+						whileInView={{ opacity: 1, x: 0 }}
 						viewport={{ once: true, margin: "-100px" }}
 						transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-						className="px-4 md:px-8 max-md:!blur-none"
+						className="px-4 md:px-8"
 					>
 						<div className="space-y-4">
 							<h2 className="font-medium text-3xl text-foreground tracking-tight sm:text-4xl md:text-5xl">
@@ -57,7 +58,7 @@ export function Integrations() {
 							initial="hidden"
 							whileInView="show"
 							viewport={{ once: true, margin: "-100px" }}
-							className="relative size-90 mx-auto md:mx-0 mask-[radial-gradient(ellipse_at_center,black,black,transparent)]"
+							className="relative size-90 mx-auto md:mx-0 max-md:[mask-image:linear-gradient(to_right,transparent_2%,black_15%,black_75%,transparent_98%)] md:mask-[radial-gradient(ellipse_at_center,black,black,transparent)]"
 						>
 							{tiles.map((tile) => (
 								<IntegrationCard key={`${tile.row}_${tile.col}`} {...tile} />
@@ -79,21 +80,19 @@ function IntegrationCard({ row, col, logo }: TileData) {
 	return (
 		<motion.div
 			variants={{
-				hidden: { opacity: 0, scale: 0.4, y: 15, filter: "blur(8px)" },
+				hidden: { opacity: 0, scale: 0.8, y: 15 },
 				show: { 
 					opacity: 1, 
 					scale: 1, 
-					y: 0, 
-					filter: "blur(0px)",
+					y: 0,
 					transition: {
-						type: "spring",
-						stiffness: 110,
-						damping: 13
+						duration: 0.8,
+						ease: [0.16, 1, 0.3, 1]
 					}
 				}
 			}}
 			className={cn(
-				"absolute flex size-18 items-center justify-center rounded-md border max-md:!blur-none",
+				"absolute flex size-18 items-center justify-center rounded-md border",
 				logo
 					? "bg-gradient-to-b from-muted/80 to-muted/20 shadow-sm dark:from-neutral-800/80 dark:to-neutral-900/40"
 					: "bg-transparent dark:bg-transparent" // Restore blank squares with borders
@@ -104,7 +103,7 @@ function IntegrationCard({ row, col, logo }: TileData) {
 			}}
 		>
 			{logo && (
-				<img
+				<Image
 					alt={logo.alt}
 					className={cn(
 						"pointer-events-none size-8 select-none object-contain p-1",

@@ -269,9 +269,9 @@ export function ContactModal({ isOpen, onClose, defaultService = "General Inquir
           <div className="fixed inset-0 -z-10" onClick={onClose} />
 
           <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: 20, filter: "blur(8px)" }}
-            animate={{ opacity: 1, scale: 1, y: 0, filter: "blur(0px)" }}
-            exit={{ opacity: 0, scale: 0.95, y: 10, filter: "blur(4px)" }}
+            initial={{ opacity: 0, scale: 0.95, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.95, y: 10 }}
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
             className="w-full max-w-[700px] bg-zinc-950/95 border border-zinc-800 rounded-2xl shadow-2xl overflow-visible"
           >

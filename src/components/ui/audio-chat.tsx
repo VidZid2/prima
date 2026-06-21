@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import Image from "next/image"
 import { ChevronDown, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 
@@ -217,9 +218,11 @@ export function VoiceChat() {
                     height: pos.size,
                   }}
                 >
-                  <img
+                  <Image
                     src={participant.avatar || "/placeholder.svg"}
                     alt={participant.name}
+                    width={pos.size}
+                    height={pos.size}
                     className="w-full h-full object-cover"
                   />
                 </div>

@@ -204,13 +204,11 @@ function getContainerVariants(position?: AlertPosition): Variants {
       opacity: 0,
       y: dy,
       scale: 0.982,
-      filter: "blur(3px)",
     },
     visible: {
       opacity: 1,
       y: 0,
       scale: 1,
-      filter: "blur(0px)",
       transition: {
         opacity: { duration: 0.42, ease: FLUID_EASE },
         y: { duration: 0.48, ease: FLUID_EASE },
@@ -224,7 +222,6 @@ function getContainerVariants(position?: AlertPosition): Variants {
       opacity: 0,
       y: dy * 0.55,
       scale: 0.986,
-      filter: "blur(2px)",
       transition: {
         opacity: { duration: 0.3, ease: FLUID_EXIT_EASE },
         y: { duration: 0.34, ease: FLUID_EXIT_EASE },
