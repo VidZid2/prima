@@ -1253,7 +1253,21 @@ export const Component = () => {
           </div>
         </div>
       </div>
-      <div className="w-full h-48 md:h-64 relative mt-24 z-0">
+
+      {/* Credit Bar */}
+      <div className="w-full flex flex-col items-center justify-center pt-8 pb-4 px-10 z-20 relative">
+        <div className="w-full max-w-6xl mx-auto border-t border-border/50 pt-8 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3">
+          <p className="text-sm text-muted-foreground font-medium text-center">
+            &copy; {new Date().getFullYear()} PRIMA, All rights reserved.
+          </p>
+          <span className="hidden sm:inline text-zinc-600">|</span>
+          <p className="text-sm text-muted-foreground font-medium text-center">
+            Website built by <span className="text-cyan-400 font-semibold tracking-wide">JOSIAH DE ASIS</span>
+          </p>
+        </div>
+      </div>
+
+      <div className="w-full h-48 md:h-64 relative mt-12 z-0">
         <div className="absolute inset-0 bg-gradient-to-t from-transparent to-background z-10 from-40%" />
         <div className="absolute inset-0 -z-10 opacity-30">
           <CanvasRevealEffect
