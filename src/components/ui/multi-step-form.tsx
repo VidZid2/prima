@@ -67,6 +67,13 @@ const MultiStepForm = React.forwardRef<HTMLDivElement, MultiStepFormProps>(
     ...props
   }, ref) => {
     const progress = Math.round((currentStep / totalSteps) * 100);
+    const contentRef = React.useRef<HTMLDivElement>(null);
+
+    React.useEffect(() => {
+      if (contentRef.current) {
+        contentRef.current.scrollTop = 0;
+      }
+    }, [currentStep]);
 
     return (
       <Card ref={ref} className={cn(multiStepFormVariants({ size }), className)} {...props}>
@@ -119,7 +126,7 @@ const MultiStepForm = React.forwardRef<HTMLDivElement, MultiStepFormProps>(
             </div>
         </CardHeader>
 
-        <CardContent className="relative min-h-[300px] overflow-hidden px-0">
+        <CardContent ref={contentRef} className="relative min-h-[300px] max-h-[55vh] sm:max-h-[420px] overflow-y-auto pl-1 pr-3 scrollbar-thin scrollbar-thumb-zinc-800 scrollbar-track-transparent">
           <Carousel index={currentStep - 1} disableDrag>
             <CarouselContent transition={{ duration: 0.5, ease: [0.32, 0.72, 0, 1] }}>
               {children}
