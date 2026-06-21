@@ -134,18 +134,18 @@ const MultiStepForm = React.forwardRef<HTMLDivElement, MultiStepFormProps>(
           </Carousel>
         </CardContent>
 
-        <CardFooter className="flex justify-between">
+        <CardFooter className="flex justify-between items-center">
           <div>{footerContent}</div>
           <div className="flex gap-2">
             {currentStep > 1 && (
               <button 
                 onClick={onBack}
-                className="w-[140px] h-8 rounded-md text-sm font-medium transition-all duration-300 flex items-center justify-center select-none outline-none focus-visible:ring-2 focus-visible:ring-ring/50 bg-gradient-to-b from-[#2a2a2f] to-[#121214] border border-white/10 hover:border-white/20 hover:from-[#323238] hover:to-[#171719] shadow-[inset_0_1px_1px_rgba(255,255,255,0.15),_0_4px_16px_rgba(0,0,0,0.4)] active:shadow-[inset_0_2px_8px_rgba(0,0,0,0.8)] active:translate-y-[1px] text-white"
+                className="w-[80px] sm:w-[140px] h-8 rounded-md text-sm font-medium transition-all duration-300 flex items-center justify-center select-none outline-none focus-visible:ring-2 focus-visible:ring-ring/50 bg-gradient-to-b from-[#2a2a2f] to-[#121214] border border-white/10 hover:border-white/20 hover:from-[#323238] hover:to-[#171719] shadow-[inset_0_1px_1px_rgba(255,255,255,0.15),_0_4px_16px_rgba(0,0,0,0.4)] active:shadow-[inset_0_2px_8px_rgba(0,0,0,0.8)] active:translate-y-[1px] text-white"
               >
                 {backButtonText}
               </button>
             )}
-            <Button className="w-[140px]" onClick={onNext}>
+            <Button className="w-[100px] sm:w-[140px]" onClick={onNext}>
               {nextButtonText}
             </Button>
           </div>
