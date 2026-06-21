@@ -120,7 +120,7 @@ export function CtaSection() {
 							initial="hidden"
 							whileInView="show"
 							viewport={{ once: true, margin: "-80px" }}
-							className="hero-heading text-balance font-medium text-[6.5vw] xs:text-3xl sm:text-4xl md:text-3xl lg:text-4xl xl:text-5xl tracking-tight drop-shadow-[0_4px_16px_rgba(0,0,0,0.6)] mb-5 md:mb-4 flex flex-col md:flex-row items-center justify-center gap-3 md:gap-0 md:flex-nowrap leading-[1.1] whitespace-nowrap"
+							className="hero-heading text-balance font-medium text-[6.5vw] xs:text-3xl sm:text-4xl md:text-3xl lg:text-4xl xl:text-5xl tracking-tight drop-shadow-[0_4px_16px_rgba(0,0,0,0.6)] mb-5 md:mb-4 flex flex-col md:flex-row items-center justify-center gap-1.5 md:gap-0 md:flex-nowrap leading-[1.1] whitespace-nowrap"
 							layout
 						>
 							<motion.span 
