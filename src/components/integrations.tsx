@@ -29,7 +29,7 @@ export function Integrations() {
 						whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
 						viewport={{ once: true, margin: "-100px" }}
 						transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-						className="px-4 md:px-8"
+						className="px-4 md:px-8 max-md:!blur-none"
 					>
 						<div className="space-y-4">
 							<h2 className="font-medium text-3xl text-foreground tracking-tight sm:text-4xl md:text-5xl">
@@ -93,7 +93,7 @@ function IntegrationCard({ row, col, logo }: TileData) {
 				}
 			}}
 			className={cn(
-				"absolute flex size-18 items-center justify-center rounded-md border",
+				"absolute flex size-18 items-center justify-center rounded-md border max-md:!blur-none",
 				logo
 					? "bg-gradient-to-b from-muted/80 to-muted/20 shadow-sm dark:from-neutral-800/80 dark:to-neutral-900/40"
 					: "bg-transparent dark:bg-transparent" // Restore blank squares with borders

@@ -305,7 +305,7 @@ export function FaqsSection() {
 							initial="hidden"
 							whileInView="show"
 							viewport={{ once: true, margin: "-80px" }}
-							className="mb-4 font-semibold text-3xl md:text-4xl text-foreground tracking-tight"
+							className="mb-4 font-semibold text-3xl md:text-4xl text-foreground tracking-tight max-md:!blur-none"
 						>
 							Frequently Asked Questions
 						</motion.h1>
@@ -314,7 +314,7 @@ export function FaqsSection() {
 							initial="hidden"
 							whileInView="show"
 							viewport={{ once: true, margin: "-80px" }}
-							className="mb-8 max-w-2xl text-muted-foreground text-sm md:text-base"
+							className="mb-8 max-w-2xl text-muted-foreground text-sm md:text-base max-md:!blur-none"
 						>
 							Find answers to common questions about our web design services, process, and support. Can't find what you're looking for? Our team is here to help.
 						</motion.p>
@@ -324,7 +324,7 @@ export function FaqsSection() {
 							initial="hidden"
 							whileInView="show"
 							viewport={{ once: true, margin: "-80px" }}
-							className="flex flex-col gap-5 mt-2"
+							className="flex flex-col gap-5 mt-2 max-md:!blur-none"
 						>
 							<InputGroup className="w-full sm:max-w-sm bg-transparent border-border">
 								<InputGroupAddon className="bg-transparent border-none pl-3 pr-2">
@@ -375,7 +375,7 @@ export function FaqsSection() {
 						initial="hidden"
 						whileInView="show"
 						viewport={{ once: true, margin: "-80px" }}
-						className="relative flex items-center justify-between border-y border-border px-4 md:px-6"
+						className="relative flex items-center justify-between border-y border-border px-4 md:px-6 max-md:!blur-none"
 					>
 						<FullWidthDivider className="bg-zinc-800" position="top" />
 						<FullWidthDivider className="bg-zinc-800" position="bottom" />
@@ -515,7 +515,7 @@ export function FaqsSection() {
 								animate={{ opacity: 1, filter: "blur(0px)" }}
 								exit={{ opacity: 0, filter: "blur(4px)" }}
 								transition={{ duration: 0.3, ease: [0.25, 1, 0.5, 1] }}
-								className="flex flex-col w-full"
+								className="flex flex-col w-full max-md:!blur-none"
 							>
 							{/* Conversation container */}
 							<div className="group relative w-full border border-white/5 bg-zinc-900/10 h-[640px] max-h-[80vh] flex flex-col items-center justify-between shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)] transition-all duration-500 overflow-hidden">
@@ -557,7 +557,7 @@ export function FaqsSection() {
         initial={{ opacity: 0, y: 10, filter: "blur(4px)" }}
         animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        className="prose prose-invert max-w-none prose-p:leading-relaxed prose-pre:bg-zinc-900 prose-pre:border prose-pre:border-white/10 prose-headings:font-bold prose-a:text-cyan-400 prose-strong:text-white"
+        className="prose prose-invert max-w-none prose-p:leading-relaxed prose-pre:bg-zinc-900 prose-pre:border prose-pre:border-white/10 prose-headings:font-bold prose-a:text-cyan-400 prose-strong:text-white max-md:!blur-none"
     >
         <ReactMarkdown
             components={{

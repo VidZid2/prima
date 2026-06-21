@@ -259,7 +259,7 @@ function PricingSectionInner() {
 					initial="hidden"
 					whileInView="show"
 					viewport={{ once: true, margin: "-100px" }}
-					className="relative z-20 flex flex-col md:flex-row md:items-center justify-between px-4 md:px-8 gap-6 mb-8"
+					className="relative z-20 flex flex-col md:flex-row md:items-center justify-between px-4 md:px-8 gap-6 mb-8 max-md:!blur-none"
 				>
 					<h2 className="text-balance font-medium text-2xl md:text-3xl lg:text-4xl">
 						Flexible pricing
@@ -287,7 +287,7 @@ function PricingSectionInner() {
 									animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
 									exit={{ opacity: 0, y: -8, filter: "blur(4px)" }}
 									transition={{ duration: 0.18, ease: "easeOut" }}
-									className="absolute top-full left-0 md:left-auto md:right-0 mt-2 w-full sm:w-[180px] bg-[#121214]/95 backdrop-blur-xl border border-white/10 rounded-lg shadow-[inset_0_1px_1px_rgba(255,255,255,0.05),_0_12px_40px_rgba(0,0,0,0.8)] overflow-hidden z-[100]"
+									className="absolute top-full left-0 md:left-auto md:right-0 mt-2 w-full sm:w-[180px] bg-[#121214]/95 backdrop-blur-xl border border-white/10 rounded-lg shadow-[inset_0_1px_1px_rgba(255,255,255,0.05),_0_12px_40px_rgba(0,0,0,0.8)] overflow-hidden z-[100] max-md:!blur-none"
 								>
 									<div className="flex flex-col p-1">
 										{categories.map((category) => {
@@ -342,7 +342,7 @@ function PricingSectionInner() {
 					initial="hidden"
 					whileInView="show"
 					viewport={{ once: true, margin: "-100px" }}
-					className="relative border-y border-white/10"
+					className="relative border-y border-white/10 max-md:!blur-none"
 				>
 					<DecorIcon className="size-4" position="top-left" />
 					<DecorIcon className="size-4" position="top-right" />
@@ -379,7 +379,7 @@ function PricingSectionInner() {
 										initial={{ opacity: 0, filter: "blur(6px)", y: 8 }}
 										animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
 										transition={{ duration: 0.28, ease: "easeOut" }}
-										className="flex flex-col justify-between flex-1 relative z-10 w-full"
+										className="flex flex-col justify-between flex-1 relative z-10 w-full max-md:!blur-none"
 									>
 										<div className="space-y-6">
 											{activeCard.badge && (
@@ -438,8 +438,8 @@ function PricingSectionInner() {
 																				initial={{ opacity: 0, width: 0, scale: 0.8, filter: "blur(2px)", marginLeft: 0 }}
 																				animate={{ opacity: 1, width: "auto", scale: 1, filter: "blur(0px)", marginLeft: 6 }}
 																				exit={{ opacity: 0, width: 0, scale: 0.8, filter: "blur(2px)", marginLeft: 0 }}
-																				transition={{ duration: 0.24, ease: "easeInOut" }}
-																				className="text-[9px] font-bold text-cyan-400 inline-block origin-left whitespace-nowrap overflow-hidden"
+																				transition={{ duration: 0.2, ease: "easeOut" }}
+																				className="text-[9px] font-bold text-cyan-400 inline-block origin-left whitespace-nowrap overflow-hidden max-md:!blur-none"
 																			>
 																				+ Fast
 																			</motion.span>
@@ -456,8 +456,8 @@ function PricingSectionInner() {
 																			initial={{ opacity: 0, y: -2, filter: "blur(2px)" }}
 																			animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
 																			exit={{ opacity: 0, y: 2, filter: "blur(2px)" }}
-																			transition={{ duration: 0.15 }}
-																			className="inline-block"
+																			transition={{ duration: 0.2, ease: "easeOut" }}
+																			className="flex items-center gap-1.5 max-md:!blur-none"
 																		>
 																			{getTurnaroundLimit(pkg.limit, i)}
 																		</motion.span>

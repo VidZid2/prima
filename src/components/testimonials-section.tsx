@@ -16,7 +16,7 @@ export function TestimonialsSection() {
 					whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
 					viewport={{ once: true, margin: "-80px" }}
 					transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
-					className="relative z-20 mx-auto max-w-3xl text-center mb-12 md:mb-16 px-4"
+					className="relative z-20 mx-auto max-w-3xl text-center mb-12 md:mb-16 px-4 max-md:!blur-none"
 				>
 					{/* Ambient glow behind title for visual depth */}
 					<div className="absolute top-[20%] left-1/2 -translate-x-1/2 w-72 h-24 bg-cyan-500/10 blur-[80px] rounded-full pointer-events-none -z-10" />
@@ -34,7 +34,7 @@ export function TestimonialsSection() {
 					whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
 					viewport={{ once: true, margin: "-100px" }}
 					transition={{ duration: 0.95, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
-					className="relative border-y border-white/10"
+					className="relative border-y border-white/10 max-md:!blur-none"
 				>
 					{/* Overflow-hidden container for background canvas */}
 					<div className="absolute inset-0 overflow-hidden z-0 pointer-events-none">
