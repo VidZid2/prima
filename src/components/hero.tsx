@@ -55,14 +55,14 @@ export function HeroSection() {
 								<h1 className="text-center font-sans font-medium text-[10vw] sm:text-5xl md:text-7xl lg:text-[80px] leading-[1.1] md:leading-[1.05] tracking-tight bg-gradient-to-b from-white via-zinc-100 to-zinc-400 bg-clip-text text-transparent drop-shadow-[0_4px_16px_rgba(0,0,0,0.6)] mb-6 max-w-6xl">
 									<span className="whitespace-nowrap">Build the Team That</span><br/>
 									<PointerHighlight delay={1.2} containerClassName="inline-block" pointerClassName="text-cyan-400" rectangleClassName="border-cyan-400/40 bg-cyan-500/5">
-										<span className="text-[8.5vw] sm:text-4xl md:text-5xl lg:text-6xl xl:text-[68px] font-heading hero-heading bg-gradient-to-b from-cyan-300 via-cyan-400 to-teal-500 bg-clip-text text-transparent font-semibold inline-block whitespace-nowrap">Takes You Further</span>
+										<span className="text-[8.5vw] sm:text-4xl md:text-6xl lg:text-7xl xl:text-[76px] font-heading hero-heading bg-gradient-to-b from-cyan-300 via-cyan-400 to-teal-500 bg-clip-text text-transparent font-semibold inline-block whitespace-nowrap">Takes You Further</span>
 									</PointerHighlight>
 								</h1>
 							</div>
 
 							{/* Subheadline */}
 							<p className="text-center text-sm sm:text-base md:text-xl text-white/60 tracking-wide max-w-2xl font-light mb-10">
-								Connecting you with world-class talent to<br/>scale, innovate and lead
+								Your Goals, Our Mission. PRIMA delivers custom IT<br/>development solutions to scale, innovate and lead.
 							</p>
 
 							{/* Buttons */}
