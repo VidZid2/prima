@@ -42,6 +42,7 @@ export const metadata: Metadata = {
 };
 
 import { SmoothScrolling } from "@/components/smooth-scrolling";
+import { PerformanceProvider } from "@/providers/performance-provider";
 
 export default function RootLayout({
   children,
@@ -54,9 +55,11 @@ export default function RootLayout({
       className={`${clearSans.variable} ${mokoto.variable} antialiased dark scroll-smooth`}
     >
       <body className="min-h-screen flex flex-col bg-black text-foreground overflow-x-hidden">
-        <SmoothScrolling>
-          {children}
-        </SmoothScrolling>
+        <PerformanceProvider>
+          <SmoothScrolling>
+            {children}
+          </SmoothScrolling>
+        </PerformanceProvider>
       </body>
     </html>
   );
