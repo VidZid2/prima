@@ -132,7 +132,7 @@ export function CtaSection() {
 							</motion.span>
 							<TextRotate
 								texts={["brand?", "vision?", "business?", "future?"]}
-								mainClassName="text-white px-2 pt-1 pb-0 md:px-3 md:pt-2 md:pb-0 flex items-center justify-center bg-gradient-to-b from-cyan-600 to-cyan-800 overflow-hidden rounded-lg shadow-[0_10px_24px_rgba(0,0,0,0.7),inset_0_2px_4px_rgba(255,255,255,0.3),inset_0_-4px_8px_rgba(0,0,0,0.5)] border border-cyan-400/40"
+								mainClassName="text-white px-2.5 py-0 md:px-4 md:py-0 flex items-center justify-center bg-gradient-to-b from-cyan-600 to-cyan-800 overflow-hidden rounded-lg shadow-[0_10px_24px_rgba(0,0,0,0.7),inset_0_2px_4px_rgba(255,255,255,0.3),inset_0_-4px_8px_rgba(0,0,0,0.5)] border border-cyan-400/40"
 								staggerFrom="last"
 								initial={{ y: "100%" }}
 								animate={{ y: 0 }}
