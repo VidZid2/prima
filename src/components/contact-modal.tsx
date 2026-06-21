@@ -315,9 +315,10 @@ export function ContactModal({ isOpen, onClose, defaultService = "General Inquir
                   footerContent={
                     <Popover>
                       <PopoverTrigger 
-                        className="flex items-center gap-1 text-xs text-zinc-400 hover:text-zinc-200 transition-colors outline-none focus-visible:text-zinc-200"
+                        className="flex h-8 w-8 items-center justify-center rounded-full bg-zinc-900 border border-zinc-800/80 text-zinc-400 hover:text-zinc-100 hover:border-zinc-700 transition-all shadow-[inset_0_1px_0_rgba(255,255,255,0.05),_0_2px_4px_rgba(0,0,0,0.3)] outline-none focus-visible:ring-1 focus-visible:ring-cyan-500/50"
+                        aria-label="Need Help"
                       >
-                        Need Help? <ArrowUpRight className="h-3 w-3" />
+                        <HelpCircle className="h-4 w-4" />
                       </PopoverTrigger>
                       <PopoverContent 
                         side="top" 
