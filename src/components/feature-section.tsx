@@ -106,14 +106,12 @@ export function FeatureCard({
 
 			{feature.illustration && (
 				<motion.div 
-					initial={{ opacity: 0, y: 16, scale: 0.98 }}
-					whileInView={{ opacity: 1, y: 0, scale: 1 }}
+					initial={{ opacity: 0, y: 20 }}
+					whileInView={{ opacity: 1, y: 0 }}
 					viewport={{ once: true, margin: "-60px" }}
 					transition={{
-						type: "spring",
-						stiffness: 80,
-						damping: 15,
-						mass: 1,
+						duration: 0.8,
+						ease: [0.16, 1, 0.3, 1],
 						delay: index * 0.06
 					}}
 					className="absolute inset-0 pointer-events-none z-0 overflow-hidden"
@@ -133,14 +131,12 @@ export function FeatureCard({
 			)}
 
 			<motion.div
-				initial={{ opacity: 0, y: 16, scale: 0.98 }}
-				whileInView={{ opacity: 1, y: 0, scale: 1 }}
+				initial={{ opacity: 0, y: 20 }}
+				whileInView={{ opacity: 1, y: 0 }}
 				viewport={{ once: true, margin: "-60px" }}
 				transition={{
-					type: "spring",
-					stiffness: 80,
-					damping: 15,
-					mass: 1,
+					duration: 0.8,
+					ease: [0.16, 1, 0.3, 1],
 					delay: index * 0.06
 				}}
 				className="relative z-20 h-full flex flex-col justify-between"

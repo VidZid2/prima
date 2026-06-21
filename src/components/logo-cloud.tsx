@@ -1,10 +1,8 @@
 import { InfiniteSlider } from "@/components/infinite-slider";
-// https://motion-primitives.com/docs/progressive-blur
-import { ProgressiveBlur } from "@/components/progressive-blur";
 
 export function LogoCloud() {
 	return (
-		<div className="relative bg-linear-to-r from-secondary via-transparent to-secondary py-6">
+		<div className="relative py-6 [mask-image:linear-gradient(to_right,transparent,black_15%,black_85%,transparent)]">
 			<InfiniteSlider gap={42} reverse speed={60} speedOnHover={20}>
 				{logos.map((logo) => (
 					<img
@@ -18,17 +16,6 @@ export function LogoCloud() {
 					/>
 				))}
 			</InfiniteSlider>
-
-			<ProgressiveBlur
-				blurIntensity={1}
-				className="pointer-events-none absolute top-0 left-0 h-full w-[100px] md:w-[160px]"
-				direction="left"
-			/>
-			<ProgressiveBlur
-				blurIntensity={1}
-				className="pointer-events-none absolute top-0 right-0 h-full w-[100px] md:w-[160px]"
-				direction="right"
-			/>
 		</div>
 	);
 }
