@@ -1,0 +1,176 @@
+"use client";
+
+import { Slot } from "@radix-ui/react-slot";
+import * as TooltipPrimitive from "@radix-ui/react-tooltip";
+import { AnimatePresence, motion } from "motion/react";
+import * as React from "react";
+
+import { cn } from "@/lib/utils";
+
+const tooltipThemeClassName = "text-white";
+
+const tooltipContentClassName =
+  "group/tooltip pointer-events-none relative z-[200] max-w-60 whitespace-normal rounded-lg bg-gradient-to-b from-[#2a2a2f] to-[#121214] border border-white/10 px-3 py-1.5 font-medium text-xs leading-snug shadow-[inset_0_1px_1px_rgba(255,255,255,0.15),_0_4px_16px_rgba(0,0,0,0.6)]";
+
+const tooltipArrowClassName =
+  "absolute h-2 w-2 rotate-45 bg-[#121214] border-r border-b border-white/10 group-data-[side=bottom]/tooltip:-top-1 group-data-[side=left]/tooltip:top-1/2 group-data-[side=right]/tooltip:top-1/2 group-data-[side=left]/tooltip:-right-1 group-data-[side=top]/tooltip:-bottom-1 group-data-[side=bottom]/tooltip:left-1/2 group-data-[side=right]/tooltip:-left-1 group-data-[side=top]/tooltip:left-1/2 group-data-[side=bottom]/tooltip:-translate-x-1/2 group-data-[side=top]/tooltip:-translate-x-1/2 group-data-[side=left]/tooltip:-translate-y-1/2 group-data-[side=right]/tooltip:-translate-y-1/2";
+
+type Side = "top" | "bottom" | "left" | "right";
+type TooltipTriggerElement = React.ReactElement<{
+  "aria-describedby"?: string;
+}>;
+
+export interface TooltipProps {
+  children: TooltipTriggerElement;
+  content: string;
+  side?: Side;
+  delay?: number;
+  className?: string;
+}
+
+const MAX_TOOLTIP_CHARACTERS = 80;
+
+function isTooltipTriggerElement(
+  node: React.ReactNode
+): node is TooltipTriggerElement {
+  return React.isValidElement(node) && node.type !== React.Fragment;
+}
+
+function mergeDescribedBy(...ids: Array<string | undefined>) {
+  const merged = ids.filter(Boolean).join(" ");
+
+  return merged.length > 0 ? merged : undefined;
+}
+
+export function Tooltip({
+  children,
+  content,
+  side = "top",
+  delay = 0.15,
+  className,
+}: TooltipProps) {
+  const [open, setOpen] = React.useState(false);
+  const timeoutRef = React.useRef<ReturnType<typeof setTimeout>>(undefined);
+  const tooltipId = React.useId();
+  const normalizedContent = content.trim();
+
+  if (!isTooltipTriggerElement(children)) {
+    throw new Error(
+      "Tooltip expects a single element child so it can forward hover, focus, and accessibility props."
+    );
+  }
+
+  React.useEffect(() => {
+    if (
+      process.env.NODE_ENV !== "production" &&
+      (normalizedContent.length > MAX_TOOLTIP_CHARACTERS ||
+        normalizedContent.includes("\n"))
+    ) {
+      console.warn(
+        "Tooltip content should stay short, single-line, and non-interactive. Use Popover for longer or multiline content."
+      );
+    }
+  }, [normalizedContent]);
+
+  const childAriaDescribedBy = children.props["aria-describedby"];
+  const triggerDescription = open
+    ? mergeDescribedBy(childAriaDescribedBy, tooltipId)
+    : childAriaDescribedBy;
+
+  const handleOpenChange = React.useCallback(
+    (nextOpen: boolean) => {
+      clearTimeout(timeoutRef.current);
+
+      if (nextOpen) {
+        if (open) {
+          return;
+        }
+
+        timeoutRef.current = setTimeout(() => setOpen(true), delay * 1000);
+        return;
+      }
+
+      setOpen(false);
+    },
+    [delay, open]
+  );
+
+  React.useEffect(() => () => clearTimeout(timeoutRef.current), []);
+
+  if (normalizedContent.length === 0) {
+    return children;
+  }
+
+  return (
+    <TooltipPrimitive.Provider delayDuration={0} skipDelayDuration={0}>
+      <TooltipPrimitive.Root
+        delayDuration={0}
+        onOpenChange={handleOpenChange}
+        open={open}
+      >
+        <TooltipPrimitive.Trigger asChild>
+          <Slot aria-describedby={triggerDescription}>{children}</Slot>
+        </TooltipPrimitive.Trigger>
+
+        <AnimatePresence>
+          {open && (
+            <TooltipPrimitive.Portal forceMount>
+              <TooltipPrimitive.Content align="center" avoidCollisions collisionPadding={12} forceMount side={side} sideOffset={10} asChild>
+                <motion.div
+                  animate={{
+                    opacity: 1,
+                    scale: 1,
+                    filter: "blur(0px)",
+                  }}
+                  className={cn(
+                    tooltipThemeClassName,
+                    tooltipContentClassName,
+                    className
+                  )}
+                  exit={{
+                    opacity: 0,
+                    scale: 0.92,
+                    filter: "blur(4px)",
+                  }}
+                  id={tooltipId}
+                  initial={{
+                    opacity: 0,
+                    scale: 0.92,
+                    filter: "blur(4px)",
+                  }}
+                  role="tooltip"
+                  style={{
+                    transformOrigin:
+                      "var(--radix-tooltip-content-transform-origin)",
+                  }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 400,
+                    damping: 24,
+                    mass: 0.6,
+                  }}
+                >
+                  <motion.span
+                    animate={{ scale: 1 }}
+                    className={tooltipArrowClassName}
+                    exit={{ scale: 0 }}
+                    initial={{ scale: 0 }}
+                    transition={{
+                      type: "spring",
+                      stiffness: 500,
+                      damping: 28,
+                      delay: 0.03,
+                    }}
+                  />
+                  {normalizedContent}
+                </motion.div>
+              </TooltipPrimitive.Content>
+            </TooltipPrimitive.Portal>
+          )}
+        </AnimatePresence>
+      </TooltipPrimitive.Root>
+    </TooltipPrimitive.Provider>
+  );
+}
+
+export { Tooltip as tooltip };
