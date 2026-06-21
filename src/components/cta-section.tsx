@@ -108,8 +108,8 @@ export function CtaSection() {
 					
 					{/* Adjusted padding to pb-0 so the cards touch the bottom border and get sliced by overflow-hidden */}
 					<div className="px-6 pt-16 pb-0 md:pt-24 md:pb-0 flex flex-col items-center text-center relative z-10">
-						{/* Ambient glow behind title for visual depth */}
-						<div className="absolute top-[20%] left-1/2 -translate-x-1/2 w-72 h-24 bg-cyan-500/10 blur-[80px] rounded-full pointer-events-none -z-10" />
+						{/* Ambient glow behind title for visual depth - Optimized: using radial-gradient instead of expensive blur-[80px] */}
+						<div className="absolute top-[20%] left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-cyan-500/15 via-cyan-500/5 to-transparent pointer-events-none -z-10" />
 
 					<LayoutGroup>
 						<motion.h2
@@ -121,7 +121,7 @@ export function CtaSection() {
 							layout
 						>
 							<motion.span 
-								layout 
+								layout
 								transition={{ type: "spring", damping: 30, stiffness: 400 }}
 								className="bg-gradient-to-b from-white via-zinc-100 to-zinc-400 bg-clip-text text-transparent text-center md:mr-3 lg:mr-4"
 							>
@@ -173,13 +173,13 @@ export function CtaSection() {
 							className="mt-16 md:mt-24 relative w-full h-[240px] md:h-[260px]"
 						>
 
-							{/* Left Card */}
-							<div className="absolute top-12 left-1/2 -translate-x-[110%] lg:-translate-x-[130%] w-[320px] md:w-[400px] bg-[#0c0c0c] border border-border rounded-[20px] p-6 md:p-8 -rotate-[8deg] scale-90 opacity-50 blur-[3px] pointer-events-none hidden md:block">
+							{/* Left Card - Optimized: Removed blur-[3px] */}
+							<div className="absolute top-12 left-1/2 -translate-x-[110%] lg:-translate-x-[130%] w-[320px] md:w-[400px] bg-[#0c0c0c] border border-border rounded-[20px] p-6 md:p-8 -rotate-[8deg] scale-90 opacity-40 pointer-events-none hidden md:block">
 								<EventCardContent />
 							</div>
 
-							{/* Right Card */}
-							<div className="absolute top-12 right-1/2 translate-x-[110%] lg:translate-x-[130%] w-[320px] md:w-[400px] bg-[#0c0c0c] border border-border rounded-[20px] p-6 md:p-8 rotate-[8deg] scale-90 opacity-50 blur-[3px] pointer-events-none hidden md:block">
+							{/* Right Card - Optimized: Removed blur-[3px] */}
+							<div className="absolute top-12 right-1/2 translate-x-[110%] lg:translate-x-[130%] w-[320px] md:w-[400px] bg-[#0c0c0c] border border-border rounded-[20px] p-6 md:p-8 rotate-[8deg] scale-90 opacity-40 pointer-events-none hidden md:block">
 								<EventCardContent />
 							</div>
 
