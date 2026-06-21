@@ -134,7 +134,7 @@ const MultiStepForm = React.forwardRef<HTMLDivElement, MultiStepFormProps>(
           </Carousel>
         </CardContent>
 
-        <CardFooter className="flex justify-between items-center">
+        <CardFooter className="flex justify-between items-center border-t border-zinc-900 mt-4 pt-4 sm:pt-6">
           <div>{footerContent}</div>
           <div className="flex gap-2">
             {currentStep > 1 && (
